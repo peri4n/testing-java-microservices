@@ -1,0 +1,33 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+
+apply plugin: 'java'
+apply plugin: 'io.spring.dependency-management'
+
+repositories {
+    mavenCentral()
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.jboss.arquillian:arquillian-bom:1.1.12.Final'
+    }
+}
+
+dependencies {
+
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.assertj:assertj-core:3.8.0'
+    testImplementation('org.jboss.arquillian.junit:arquillian-junit-standalone')
+    testImplementation 'org.arquillian.cube:arquillian-cube-docker:1.0.0.Alpha17'
+    testImplementation 'org.arquillian.cube:assertj-docker-java:1.0.0.Alpha17'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
